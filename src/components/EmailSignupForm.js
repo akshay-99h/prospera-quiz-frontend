@@ -7,7 +7,16 @@ import {
   FormLabel,
   Input,
   Button,
+  Link,
+  Spinner,
+  IconButton,
+  InputGroup,
+  InputRightElement,
 } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function EmailSignupForm() {
   const [formData, setFormData] = useState({
@@ -15,6 +24,8 @@ function EmailSignupForm() {
     email: "",
     password: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -24,20 +35,66 @@ function EmailSignupForm() {
     }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // You can perform further actions here, such as API calls to create the user.
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
-    // Reset the form data
-    setFormData({
-      username: "",
-      email: "",
-      password: "",
-    });
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    // Validate username and email fields before submitting
+    if (!formData.username || !formData.email) {
+      toast.error("Please provide a valid username and email.");
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+
+      const response = await axios.post(
+        "http://localhost:1337/api/auth/local/register",
+        formData
+      );
+
+      const user = response.data;
+      localStorage.setItem("token", JSON.stringify(user.jwt));
+
+      setFormData({
+        username: "",
+        email: "",
+        password: "",
+      });
+
+      toast.success("User registered successfully.");
+      window.location.href = "/login";
+    } catch (error) {
+      console.error("Error registering user:", error);
+
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        toast.error(`Error: ${error.response.data.message}`);
+      } else {
+        toast.error("An error occurred while registering. Please try again.");
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <Box textAlign="center" mt={10}>
+    <Box
+      textAlign="center"
+      mt={10}
+      p={6}
+      boxShadow="xl"
+      rounded="md"
+      bg="white"
+      w="400px"
+      mx="auto"
+    >
       <Heading as="h2" size="lg" mb={4}>
         Sign up with Email
       </Heading>
@@ -65,18 +122,42 @@ function EmailSignupForm() {
           </FormControl>
           <FormControl>
             <FormLabel>Password</FormLabel>
-            <Input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              required
-            />
+            <InputGroup>
+              <Input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                required
+              />
+              {formData.password && (
+                <InputRightElement width="4.5rem">
+                  <IconButton
+                    h="1.75rem"
+                    size="sm"
+                    onClick={togglePasswordVisibility}
+                    aria-label={
+                      showPassword ? "Hide password" : "Show password"
+                    }
+                    icon={showPassword ? <FiEyeOff /> : <FiEye />}
+                  />
+                </InputRightElement>
+              )}
+            </InputGroup>
           </FormControl>
-          <Button type="submit" colorScheme="green">
-            Sign Up
+          <br />
+          <Button
+            type="submit"
+            colorScheme="green"
+            isLoading={isLoading}
+            loadingText="Signing Up"
+          >
+            {isLoading ? <Spinner size="sm" /> : "Sign Up"}
           </Button>
         </form>
+        <Link as={RouterLink} to="/login" color="blue.500">
+          Already have an account? Login here.
+        </Link>
       </VStack>
     </Box>
   );
