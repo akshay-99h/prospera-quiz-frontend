@@ -2,14 +2,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { ChakraProvider } from "@chakra-ui/react";
-import App from "./components/App";
+import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.render(
   <ChakraProvider>
-    <Router>
-      <App />
-    </Router>
+    <App />
+    <ToastContainer />
   </ChakraProvider>,
   document.getElementById("root")
 );
