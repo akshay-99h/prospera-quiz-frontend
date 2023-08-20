@@ -36,21 +36,21 @@ function SignupOptions() {
           <HStack spacing={4} align="center">
             <IconButton
               as="a"
-              href="http://localhost:1337/api/connect/google"
+              href="https://my-quiz-app-production.up.railway.app/api/connect/google"
               aria-label="Login with Google"
               colorScheme="red"
               icon={<FaGoogle />}
             />
             <IconButton
               as="a"
-              href="http://localhost:1337/api/connect/discord"
+              href="https://my-quiz-app-production.up.railway.app/api/connect/discord"
               aria-label="Login with Discord"
               colorScheme="blue"
               icon={<FaDiscord />}
             />
             <IconButton
               as="a"
-              href="http://localhost:1337/api/connect/github"
+              href="https://my-quiz-app-production.up.railway.app/api/connect/github"
               aria-label="Login with GitHub"
               colorScheme="gray"
               icon={<FaGithub />}

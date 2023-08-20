@@ -21,7 +21,7 @@ function UserProfile() {
 
     if (token) {
       axios
-        .get(`http://localhost:1337/api/users/me`, {
+        .get(`https://my-quiz-app-production.up.railway.app/api/users/me`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

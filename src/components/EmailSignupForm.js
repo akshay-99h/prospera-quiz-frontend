@@ -52,7 +52,7 @@ function EmailSignupForm() {
       setIsLoading(true);
 
       const response = await axios.post(
-        "http://localhost:1337/api/auth/local/register",
+        "https://my-quiz-app-production.up.railway.app/api/auth/local/register",
         formData
       );
 

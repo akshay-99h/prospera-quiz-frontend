@@ -26,7 +26,7 @@ function Scores() {
 
     if (username) {
       axios
-        .get("http://localhost:1337/api/questions/")
+        .get("https://my-quiz-app-production.up.railway.app/api/questions/")
         .then((response) => {
           const userOccurrences = response.data.data.filter(
             (item) => item.attributes.givenAnswer?.[username]
@@ -55,7 +55,7 @@ function Scores() {
 
     if (token) {
       axios
-        .get(`http://localhost:1337/api/users/me`, {
+        .get(`https://my-quiz-app-production.up.railway.app/api/users/me`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

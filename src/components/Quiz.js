@@ -58,11 +58,15 @@ function Quiz() {
     setIsNextSubmitting(false);
     try {
       await axios
-        .put(`http://localhost:1337/api/questions/${id}`, payload, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        .put(
+          `https://my-quiz-app-production.up.railway.app/api/questions/${id}`,
+          payload,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
         .then((response) => {
           console.log("PUT response:", response.data);
         });
@@ -81,11 +85,14 @@ function Quiz() {
     if (token) {
       setName(storedName);
       axios
-        .get(`http://localhost:1337/api/questions/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        .get(
+          `https://my-quiz-app-production.up.railway.app/api/questions/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
         .then((response) => {
           setQuestion(response?.data?.data?.attributes);
           setIsLoading(false);

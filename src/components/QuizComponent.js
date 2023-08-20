@@ -29,7 +29,7 @@ function QuizComponent() {
       setName(storedName);
 
       axios
-        .get("http://localhost:1337/api/quizzes", {
+        .get("https://my-quiz-app-production.up.railway.app/api/quizzes", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
