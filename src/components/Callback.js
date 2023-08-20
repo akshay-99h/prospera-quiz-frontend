@@ -18,7 +18,7 @@ function Callback({ provider }) {
     if (accessToken) {
       axios
         .get(
-          `http://localhost:1337/api/auth/${currentProvider}/callback/${query}`
+          `https://my-quiz-app-production.up.railway.app/api/auth/${currentProvider}/callback/${query}`
         )
         .then((response) => {
           localStorage.setItem("token", response.data.jwt);
