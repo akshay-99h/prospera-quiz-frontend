@@ -24,6 +24,8 @@ function SignupOptions() {
       bg="white"
       w="400px"
       mx="auto"
+      position="relative"
+      top="25vh"
     >
       <Heading as="h2" size="lg" mb={4}>
         Signup Options

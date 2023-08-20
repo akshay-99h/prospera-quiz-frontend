@@ -244,6 +244,8 @@ function LoginForm() {
       bg="white"
       w="400px"
       mx="auto"
+      position="relative"
+      top="20vh"
     >
       <Heading as="h2" size="lg" mb={4}>
         Login
