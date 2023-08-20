@@ -14,6 +14,7 @@ import {
   Menu,
   MenuButton,
 } from "@chakra-ui/react";
+import "./Page.css";
 
 function Quiz() {
   const { id } = useParams();
@@ -29,7 +30,6 @@ function Quiz() {
   const [isNextSubmitting, setIsNextSubmitting] = useState(false);
 
   const handleAnswerSubmit = async () => {
-    // Prepare the answer object
     const selectedAnswer = {
       A: false,
       B: false,
@@ -38,7 +38,6 @@ function Quiz() {
     };
     selectedAnswer[givenAnswer] = true;
 
-    // Update the givenAnswer field of the question
     const updatedQuestion = {
       ...question,
       givenAnswer: {
@@ -47,14 +46,16 @@ function Quiz() {
       },
     };
 
-    // Prepare the payload in the required format
     const payload = {
       data: {
         givenAnswer: updatedQuestion.givenAnswer,
       },
     };
+    setIsNextSubmitting(true);
 
-    // Send a PUT request to update the question on the server
+    await new Promise((resolve) => setTimeout(resolve, 6000));
+
+    setIsNextSubmitting(false);
     try {
       await axios
         .put(`http://localhost:1337/api/questions/${id}`, payload, {
@@ -116,13 +117,11 @@ function Quiz() {
         clearInterval(interval);
       };
     } else if (timer === 0) {
-      // If the timer is exactly 1, submit the answer and navigate
       handleAnswerSubmit();
     }
   }, [timer, handleAnswerSubmit]);
 
   const handleSignOut = () => {
-    // Clear the token from local storage and navigate to the login page
     localStorage.removeItem("token");
     localStorage.removeItem("name");
     navigate("/login");
@@ -140,11 +139,6 @@ function Quiz() {
     } else {
       navigate("/result");
     }
-    setIsNextSubmitting(true); // Start the loader
-
-    await new Promise((resolve) => setTimeout(resolve, 3000)); // Remove this line in your actual code
-
-    setIsNextSubmitting(false); // Stop the loader
   };
 
   if (isLoading) {
@@ -152,7 +146,7 @@ function Quiz() {
   }
 
   return (
-    <>
+    <div className="container" style={{ position: "relative", top: "0px" }}>
       <Box
         position="absolute"
         top="20px"
@@ -247,7 +241,7 @@ function Quiz() {
           </Box>
         </Box>
       </Box>
-    </>
+    </div>
   );
 }
 

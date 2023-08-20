@@ -3,25 +3,11 @@ import { Box, Heading, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 
 function VerificationPage() {
-  const { userId } = useParams(); // Assuming you're passing the userId in the URL
+  const { userId } = useParams();
 
-  // You can add more state to track verification status, errors, etc.
   const [verificationStatus, setVerificationStatus] = useState("");
 
-  useEffect(() => {
-    // Here you can make an API call to your backend to verify the user's account using the userId.
-    // Update the verificationStatus state based on the response.
-    // For example:
-    // const verifyUser = async () => {
-    //   try {
-    //     await api.verifyUser(userId);
-    //     setVerificationStatus('success');
-    //   } catch (error) {
-    //     setVerificationStatus('error');
-    //   }
-    // };
-    // verifyUser();
-  }, [userId]);
+  useEffect(() => {}, [userId]);
 
   const renderMessage = () => {
     if (verificationStatus === "success") {

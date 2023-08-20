@@ -34,7 +34,6 @@ function Callback({ provider }) {
           setTimeout(() => {
             navigate("/login");
           }, 2000);
-          // throw Error(`Callback failed with status code ${error}`);
         });
     }
   }, [navigate]);

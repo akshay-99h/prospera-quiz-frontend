@@ -11,6 +11,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
+import "./Page.css";
 
 function Scores() {
   const [showMenu, setShowMenu] = useState(false);
@@ -24,17 +25,13 @@ function Scores() {
     const username = localStorage.getItem("username");
 
     if (username) {
-      // Fetch data from the API
       axios
         .get("http://localhost:1337/api/questions/")
         .then((response) => {
-          // Calculate maxScore
           const userOccurrences = response.data.data.filter(
             (item) => item.attributes.givenAnswer?.[username]
           );
           setMaxScore(userOccurrences.length * 10);
-
-          // Calculate totalScore
           let calculatedTotalScore = 0;
           userOccurrences.forEach((item) => {
             const givenAnswerKey = item.attributes.givenAnswer[username];
@@ -65,8 +62,6 @@ function Scores() {
         })
         .then((response) => {
           setUserData(response.data);
-
-          // Add the username to local storage if not already present
           if (!localStorage.getItem("username")) {
             localStorage.setItem("username", response.data.username);
           }
@@ -80,11 +75,11 @@ function Scores() {
   });
   const handleSignOut = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("username"); // Remove the username from local storage
+    localStorage.removeItem("username");
     navigate("/login");
   };
   return (
-    <>
+    <div className="container" style={{ position: "relative", top: "0px" }}>
       <Box
         position="absolute"
         top="20px"
@@ -172,7 +167,7 @@ function Scores() {
           </Box>
         </Box>
       </Box>
-    </>
+    </div>
   );
 }
 

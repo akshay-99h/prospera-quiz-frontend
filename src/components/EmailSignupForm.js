@@ -17,6 +17,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import axios from "axios";
 import { toast } from "react-toastify";
+import "./Page.css";
 
 function EmailSignupForm() {
   const [formData, setFormData] = useState({
@@ -42,7 +43,6 @@ function EmailSignupForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Validate username and email fields before submitting
     if (!formData.username || !formData.email) {
       toast.error("Please provide a valid username and email.");
       return;
@@ -85,83 +85,86 @@ function EmailSignupForm() {
   };
 
   return (
-    <Box
-      textAlign="center"
-      mt={10}
-      p={6}
-      boxShadow="xl"
-      rounded="md"
-      bg="white"
-      w="400px"
-      mx="auto"
-      position="relative"
-      top="25vh"
-    >
-      <Heading as="h2" size="lg" mb={4}>
-        Sign up with Email
-      </Heading>
-      <VStack spacing={4} align="center">
-        <form onSubmit={handleSubmit}>
-          <FormControl>
-            <FormLabel>Username</FormLabel>
-            <Input
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleInputChange}
-              required
-            />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Email</FormLabel>
-            <Input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-            />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Password</FormLabel>
-            <InputGroup>
+    <div className="container">
+      <Box
+        textAlign="center"
+        mt={10}
+        p={6}
+        boxShadow="xl"
+        rounded="md"
+        bg="white"
+        w="400px"
+        mx="auto"
+        position="relative"
+        top="25vh"
+        opacity={"0.95"}
+      >
+        <Heading as="h2" size="lg" mb={4}>
+          Sign up with Email
+        </Heading>
+        <VStack spacing={4} align="center">
+          <form onSubmit={handleSubmit}>
+            <FormControl>
+              <FormLabel>Username</FormLabel>
               <Input
-                type={showPassword ? "text" : "password"}
-                name="password"
-                value={formData.password}
+                type="text"
+                name="username"
+                value={formData.username}
                 onChange={handleInputChange}
                 required
               />
-              {formData.password && (
-                <InputRightElement width="4.5rem">
-                  <IconButton
-                    h="1.75rem"
-                    size="sm"
-                    onClick={togglePasswordVisibility}
-                    aria-label={
-                      showPassword ? "Hide password" : "Show password"
-                    }
-                    icon={showPassword ? <FiEyeOff /> : <FiEye />}
-                  />
-                </InputRightElement>
-              )}
-            </InputGroup>
-          </FormControl>
-          <br />
-          <Button
-            type="submit"
-            colorScheme="green"
-            isLoading={isLoading}
-            loadingText="Signing Up"
-          >
-            {isLoading ? <Spinner size="sm" /> : "Sign Up"}
-          </Button>
-        </form>
-        <Link as={RouterLink} to="/login" color="blue.500">
-          Already have an account? Login here.
-        </Link>
-      </VStack>
-    </Box>
+            </FormControl>
+            <FormControl>
+              <FormLabel>Email</FormLabel>
+              <Input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Password</FormLabel>
+              <InputGroup>
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  required
+                />
+                {formData.password && (
+                  <InputRightElement width="4.5rem">
+                    <IconButton
+                      h="1.75rem"
+                      size="sm"
+                      onClick={togglePasswordVisibility}
+                      aria-label={
+                        showPassword ? "Hide password" : "Show password"
+                      }
+                      icon={showPassword ? <FiEyeOff /> : <FiEye />}
+                    />
+                  </InputRightElement>
+                )}
+              </InputGroup>
+            </FormControl>
+            <br />
+            <Button
+              type="submit"
+              colorScheme="green"
+              isLoading={isLoading}
+              loadingText="Signing Up"
+            >
+              {isLoading ? <Spinner size="sm" /> : "Sign Up"}
+            </Button>
+          </form>
+          <Link as={RouterLink} to="/login" color="blue.500">
+            Already have an account? Login here.
+          </Link>
+        </VStack>
+      </Box>
+    </div>
   );
 }
 

@@ -12,6 +12,7 @@ import {
 import { ChevronLeftIcon, StarIcon } from "@chakra-ui/icons";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./Page.css";
 
 function Result() {
   const [showMenu, setShowMenu] = useState(false);
@@ -31,7 +32,6 @@ function Result() {
         .then((response) => {
           setUserData(response.data);
 
-          // Add the username to local storage if not already present
           if (!localStorage.getItem("username")) {
             localStorage.setItem("username", response.data.username);
           }
@@ -46,12 +46,12 @@ function Result() {
 
   const handleSignOut = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("username"); // Remove the username from local storage
+    localStorage.removeItem("username");
     navigate("/login");
   };
 
   return (
-    <>
+    <div className="container" style={{ position: "relative", top: "0px" }}>
       <Box
         position="absolute"
         top="20px"
@@ -122,7 +122,7 @@ function Result() {
           </HStack>
         </Box>
       </Box>
-    </>
+    </div>
   );
 }
 

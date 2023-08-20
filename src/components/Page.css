@@ -1,0 +1,15 @@
+/* WelcomePage.css */
+.container {
+  height: 100vh;
+  background-image: url("../images/gradient.jpg");
+    background-size: cover;
+    position: relative;
+    top: -40px;
+}
+
+.content-box {
+  padding: 10rem;
+  background-color: rgba(255, 255, 255, 0.8); /* Translucent white background */
+  border-radius: 1.5rem; /* Increased border radius for more curves */
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+}
