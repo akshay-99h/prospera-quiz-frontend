@@ -8,7 +8,6 @@ import {
   Link,
   VStack,
 } from "@chakra-ui/react";
-import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -20,9 +19,6 @@ function UserProfile() {
     const token = localStorage.getItem("token");
 
     if (token) {
-      const decodedToken = jwt_decode(token);
-      const userId = decodedToken.id;
-
       axios
         .get(`http://localhost:1337/api/users/me`, {
           headers: {

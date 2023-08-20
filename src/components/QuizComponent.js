@@ -9,8 +9,6 @@ import {
   Spinner,
   Menu,
   MenuButton,
-  MenuList,
-  MenuItem,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +18,7 @@ function QuizComponent() {
   const [quizzes, setQuizzes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [name, setName] = useState("");
-  const [showMenu, setShowMenu] = useState(false); // To show/hide the menu
+  const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -47,7 +45,9 @@ function QuizComponent() {
       navigate("/login");
     }
   }, [navigate]);
-
+  const gotoProfile = () => {
+    navigate("/profile");
+  };
   const handleSignOut = () => {
     // Clear the token from local storage and navigate to the login page
     localStorage.removeItem("token");
@@ -64,8 +64,10 @@ function QuizComponent() {
         mb={4}
         px={4}
       >
-        <Box // Container for Avatar and Menu
-          position="relative"
+        <Box
+          position="absolute"
+          top="20px"
+          right="20px"
           onMouseEnter={() => setShowMenu(true)}
           onMouseLeave={() => setShowMenu(false)}
         >
@@ -73,8 +75,8 @@ function QuizComponent() {
           {showMenu && (
             <Box
               position="absolute"
-              bottom="-55px"
-              right="-150%"
+              bottom="-100px"
+              right="0"
               bgColor="white"
               p={2}
               boxShadow="md"
@@ -83,6 +85,13 @@ function QuizComponent() {
             >
               <Menu>
                 <MenuButton>{name}</MenuButton>
+                <Button
+                  onClick={gotoProfile}
+                  width={"100%"}
+                  marginBottom={"5px"}
+                >
+                  Profile
+                </Button>
                 <Button onClick={handleSignOut}>Sign Out</Button>
               </Menu>
             </Box>
@@ -114,7 +123,15 @@ function QuizComponent() {
                 <Button
                   mt={2}
                   colorScheme="blue"
-                  onClick={() => navigate(`/quiz/${quiz.id}`)}
+                  onClick={() =>
+                    navigate(
+                      quiz.id === 1
+                        ? `/quiz/${quiz.id}`
+                        : quiz.id === 2
+                        ? `/quiz/6`
+                        : `/quiz/12`
+                    )
+                  }
                   _hover={{ opacity: 0.8 }}
                 >
                   Start Quiz

@@ -1,4 +1,3 @@
-// src/components/App.js
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WelcomePage from "./components/WelcomePage";
@@ -11,7 +10,7 @@ import QuizComponent from "./components/QuizComponent";
 import ResultPage from "./components/ResultPage";
 import ErrorNotFound from "./components/ErrorNotFound";
 import Callback from "./components/Callback.js";
-// import Quiz from "./components/Quiz.js"
+import Quiz from "./components/Quiz.js";
 
 function App() {
   return (
@@ -24,7 +23,7 @@ function App() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/quiz" element={<QuizComponent />} />{" "}
-        {/* <Route path="/quiz/:id" element={<Quiz />} /> */}
+        <Route path="/quiz/:id" element={<Quiz />} />
         <Route path="/result/:quizId" element={<ResultPage />} />
         <Route
           path="/api/auth/google/callback"
