@@ -1,5 +1,5 @@
 import React from "react";
-import { Link as ReactLink } from "react-router-dom";
+import { Link as ReactLink, useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
@@ -11,7 +11,6 @@ import {
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, StarIcon } from "@chakra-ui/icons";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Result() {
