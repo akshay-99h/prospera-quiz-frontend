@@ -1,6 +1,8 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Quiz App",
+  "name": "Finance Quiz",
+  "orientation": "portrait",
+  "description": "",
   "icons": [
     {
       "src": "favicon.ico",
