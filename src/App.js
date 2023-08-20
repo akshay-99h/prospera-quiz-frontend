@@ -11,6 +11,7 @@ import ResultPage from "./components/ResultPage";
 import ErrorNotFound from "./components/ErrorNotFound";
 import Callback from "./components/Callback.js";
 import Quiz from "./components/Quiz.js";
+import Scores from "./components/Scores.js";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/quiz" element={<QuizComponent />} />{" "}
         <Route path="/quiz/:id" element={<Quiz />} />
         <Route path="/result" element={<ResultPage />} />
+        <Route path="/scores" element={<Scores />} />
         <Route
           path="/api/auth/google/callback"
           element={<Callback provider="google" />}
