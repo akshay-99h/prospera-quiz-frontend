@@ -24,7 +24,7 @@ function App() {
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/quiz" element={<QuizComponent />} />{" "}
         <Route path="/quiz/:id" element={<Quiz />} />
-        <Route path="/result/:quizId" element={<ResultPage />} />
+        <Route path="/result" element={<ResultPage />} />
         <Route
           path="/api/auth/google/callback"
           element={<Callback provider="google" />}

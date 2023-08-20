@@ -130,7 +130,7 @@ function Quiz() {
   const gotoProfile = () => {
     navigate("/profile");
   };
-
+  const username = localStorage.getItem("username");
   const navigateToNextQuestion = async () => {
     const nextQuestionId = parseInt(id) + 1;
     console.log(nextQuestionId);
@@ -160,7 +160,7 @@ function Quiz() {
         onMouseEnter={() => setShowMenu(true)}
         onMouseLeave={() => setShowMenu(false)}
       >
-        <Avatar name={name} size="md" />
+        <Avatar name={username} size="md" />
         {showMenu && (
           <Box
             position="absolute"
